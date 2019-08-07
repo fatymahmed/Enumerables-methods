@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+#:nodoc:
 
 module Enumerable
   def my_each
