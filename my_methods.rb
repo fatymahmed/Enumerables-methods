@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# my enumerable methods
 
 module Enumerable
   def my_each
@@ -40,13 +39,13 @@ module Enumerable
     flag = false
     my_each { |element| flag ||= yield(element) }
     !flag
-  end  
+  end
 
   def my_count
-    count = 0   
+    count = 0
     my_each { |element| count += 1 if yield(element) }
     count
-  end  
+  end
 
   def my_map(proc = nil)
     result = []
@@ -59,13 +58,13 @@ module Enumerable
       end
     end
     result
-  end  
+  end
 
   def my_inject(initial)
     result = initial || 0
     my_each do |element|
       result = yield(result, element)
-    end  
+    end
     result
   end
 
