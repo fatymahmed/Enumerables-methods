@@ -1,75 +1,70 @@
 # frozen_string_literal: true
-# my enumerable methods
 
 module Enumerable
-  def my_each
-    # your code here
-    i = 0
-    while i < length
-      yield(self[i])
-      i += 1
-    end
-  end
-
-  def my_each_with_index
-    i = 0
-    while i < length
-      yield(i, self[i])
-      i += 1
-    end
-  end
-
-  def my_select
-    result = []
-    my_each { |element| result << element if yield(element) }
-  end
-
-  def my_all
-    flag = true
-    my_each { |element| flag &&= yield(element) }
-    flag
-  end
-
-  def my_any
-    flag = false
-    my_each { |element| flag ||= yield(element) }
-    flag
-  end
-
-  def my_none
-    flag = false
-    my_each { |element| flag ||= yield(element) }
-    !flag
-  end  
-
-  def my_count
-    count = 0   
-    my_each { |element| count += 1 if yield(element) }
-    count
-  end  
-
-  def my_map(proc = nil)
-    result = []
-    result <<
-    my_each do |element|
-      if proc
-        proc.call(element)         
-      else
-        yield(element)
+    def my_each
+      i = 0
+      while i < length
+        yield(self[i])
+        i += 1
       end
     end
-    result
-  end  
-
-  def my_inject(initial)
-    result = initial || 0
-    my_each do |element|
-      result = yield(result, element)
-    end  
-    result
+  
+    def my_each_with_index
+      i = 0
+      while i < length
+        yield(i, self[i])
+        i += 1
+      end
+    end
+  
+    def my_select
+      result = []
+      my_each { |element| result << element if yield(element) }
+    end
+  
+    def my_all
+      flag = true
+      my_each { |element| flag &&= yield(element) }
+      flag
+    end
+  
+    def my_any
+      flag = false
+      my_each { |element| flag ||= yield(element) }
+      flag
+    end
+  
+    def my_none
+      flag = false
+      my_each { |element| flag ||= yield(element) }
+      !flag
+    end
+  
+    def my_count
+      count = 0
+      my_each { |element| count += 1 if yield(element) }
+      count
+    end
+  
+    def my_map(proc = nil)
+      result = []
+      my_each do |element|
+        result <<
+          if proc
+            proc.call(element)
+          else
+            yield(element)
+          end
+      end
+      result
+    end
+  
+    def my_inject(init_value)
+      res = init_value || 0
+      my_each { |element| res = yield(res, element) }
+      res
+    end
   end
-
-end
 # def multiply_els(arr)
 #     arr.my_inject(1){|res,ele| res*ele}
 # end
