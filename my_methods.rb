@@ -1,6 +1,6 @@
 module Enumerable
   def my_each
-      # your code here
+    # your code here
     i = 0
     while i < self.length
       yield(self[i])
@@ -9,18 +9,18 @@ module Enumerable
   end
 
   def my_each_with_index
-        # your code here
+    # your code here
     i = 0
     while i < self.length
-      yield(i,self[i])
+      yield(i , self[i])
       i += 1
-      end
+    end
   end
 
   def my_select
     result = []
     self.my_each { |element| result << element if yield(element) }
-  end  
+  end
     
   def my_all
     flag = true
@@ -42,26 +42,31 @@ module Enumerable
 
   def my_count
     count = 0   
-    self.my_each { |element| count +=1 if yield(element) }
+    self.my_each { |element| count += 1 if yield(element) }
     count
   end  
 
   def my_map(proc = nil)
     result = []
-    self.my_each { |element|
-    if proc
-      result <<  proc.call(element)         
-    else
-      result << yield(element)
-    end
-      }
+    self.my_each 
+    {
+      |element|
+      if proc
+        result << proc.call(element)         
+      else
+        result << yield(element)
+      end
+    }
     result
   end  
 
-  def my_inject(i)
-    result = i || 0
-    self.my_each { |element| result = yield(result,element) }
-    result
+  def my_inject(initial)
+    result = initial || 0
+    self.my_each 
+    {
+      |element| result = yield(result , element) 
+    }
+      result
   end
 
   end
