@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# the module contains my enumerable comments
+#:nodoc:
 
 module Enumerable
   def my_each
