@@ -52,7 +52,7 @@ module Enumerable
     result <<
     my_each do |element|
       if proc
-        proc.call(element)         
+        proc.call(element)       
       else
         yield(element)
       end
@@ -67,7 +67,6 @@ module Enumerable
     end
     result
   end
-
 end
 # def multiply_els(arr)
 #     arr.my_inject(1){|res,ele| res*ele}
@@ -84,9 +83,8 @@ end
 #   ["hi","hey"].my_map{|element| element.upcase}
 #   [2,2,2,5,2].my_inject(1){|res,ele| res+ele}
 #   multiply_els([2,4,5])
-  
 #   proc=Proc.new{
-#     |element| 
+#     |element|
 #     element.upcase
 #   }
 #   ["hi","hey"].my_map(proc)
