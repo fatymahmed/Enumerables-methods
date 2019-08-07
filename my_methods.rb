@@ -1,17 +1,17 @@
+# frozen_string_literal: true
 module Enumerable
   def my_each
     # your code here
     i = 0
-    while i < self.length
+    while i < length
       yield(self[i])
       i += 1
     end
   end
 
   def my_each_with_index
-    # your code here
     i = 0
-    while i < self.length
+    while i < length
       yield(i , self[i])
       i += 1
     end
@@ -19,36 +19,36 @@ module Enumerable
 
   def my_select
     result = []
-    self.my_each { |element| result << element if yield(element) }
+    my_each { |element| result << element if yield(element) }
   end
     
   def my_all
     flag = true
-    self.my_each { |element| flag = flag && yield(element) }
+    my_each { |element| flag &&= yield(element) }
     flag
   end  
 
   def my_any
     flag = false
-    self.my_each { |element| flag = flag || yield(element) }
+    my_each { |element| flag ||= yield(element) }
     flag
   end  
 
   def my_none
     flag = false
-    self.my_each { |element| flag = flag || yield(element) }
+    my_each { |element| flag ||= yield(element) }
     !flag
   end  
 
   def my_count
     count = 0   
-    self.my_each { |element| count += 1 if yield(element) }
+    my_each { |element| count += 1 if yield(element) }
     count
   end  
 
   def my_map(proc = nil)
     result = []
-    self.my_each do |element|
+    my_each do |element|
       if proc
         result << proc.call(element)         
       else
@@ -60,7 +60,7 @@ module Enumerable
 
   def my_inject(initial)
     result = initial || 0
-    self.my_each do |element|
+    my_each do |element|
       result = yield(result , element)
     end  
     result
