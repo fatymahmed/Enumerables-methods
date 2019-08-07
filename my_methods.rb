@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#my enumerable methods
+# my enumerable methods
 
 module Enumerable
   def my_each
@@ -29,12 +29,12 @@ module Enumerable
     my_each { |element| flag &&= yield(element) }
     flag
   end
-  
+
   def my_any
     flag = false
     my_each { |element| flag ||= yield(element) }
     flag
-  end  
+  end
 
   def my_none
     flag = false
@@ -69,7 +69,7 @@ module Enumerable
     result
   end
 
-  end
+end
 # def multiply_els(arr)
 #     arr.my_inject(1){|res,ele| res*ele}
 # end
