@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-#:nodoc:
 
-module Enumerable
+
+module Enumerable #:nodoc:
   def my_each
     # your code here
     i = 0
