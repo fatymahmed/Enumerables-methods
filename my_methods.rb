@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-#the module contains my enumerable comments
+# the module contains my enumerable comments
 
 module Enumerable
   def my_each
