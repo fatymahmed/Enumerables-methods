@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Enumerable
   def my_each
     # your code here
@@ -12,7 +13,7 @@ module Enumerable
   def my_each_with_index
     i = 0
     while i < length
-      yield(i , self[i])
+      yield(i, self[i])
       i += 1
     end
   end
@@ -21,7 +22,7 @@ module Enumerable
     result = []
     my_each { |element| result << element if yield(element) }
   end
-    
+
   def my_all
     flag = true
     my_each { |element| flag &&= yield(element) }
@@ -48,11 +49,12 @@ module Enumerable
 
   def my_map(proc = nil)
     result = []
+    result <<
     my_each do |element|
       if proc
-        result << proc.call(element)         
+        proc.call(element)         
       else
-        result << yield(element)
+        yield(element)
       end
     end
     result
@@ -61,13 +63,12 @@ module Enumerable
   def my_inject(initial)
     result = initial || 0
     my_each do |element|
-      result = yield(result , element)
+      result = yield(result, element)
     end  
     result
   end
 
   end
-
 # def multiply_els(arr)
 #     arr.my_inject(1){|res,ele| res*ele}
 # end
