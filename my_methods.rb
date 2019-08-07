@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+#my enumerable methods
 
 module Enumerable
   def my_each
@@ -27,8 +28,8 @@ module Enumerable
     flag = true
     my_each { |element| flag &&= yield(element) }
     flag
-  end  
-
+  end
+  
   def my_any
     flag = false
     my_each { |element| flag ||= yield(element) }
