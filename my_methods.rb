@@ -54,8 +54,7 @@ module Enumerable
         result << proc.call(element)         
       else
         result << yield(element)
-      end
-    }
+      end }
     result
   end  
 
