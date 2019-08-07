@@ -61,8 +61,7 @@ module Enumerable
   def my_inject(initial)
     result = initial || 0
     self.my_each 
-    { |element| result = yield(result , element) 
-    }
+    { |element| result = yield(result , element) }
       result
   end
 
