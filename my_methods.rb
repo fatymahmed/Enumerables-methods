@@ -50,9 +50,13 @@ module Enumerable #:nodoc:
     return result
   end
 
-  def my_count
+  def my_count(arg = nil)
     count = 0
-    my_each { |element| count += 1 if yield(element) }
+    if arg.nil?
+      my_each { |element| count += 1 if yield(element) }
+    else
+      my_each { |element| count += 1 if element == arg }
+    end
     return count
   end
 
@@ -93,17 +97,18 @@ end
     # puts [2,2,2,1,8].my_any { |num|  num.odd?  }
     # puts [2,2,2,2,2].my_none { |num|  num.odd?  }
 
-#   [2,2,2,5,2].my_count{ |num|  num.odd?  }
+    # puts [2,7,2,5,2].my_count{ |num|  num.odd?  }
+    # puts [2,2,2,5,2].my_count(2){}
 
-  # pc=["hi","hey"].my_map{|element| element.upcase}
-  # puts pc
+    # pc=["hi","hey"].my_map{|element| element.upcase}
+    # puts pc
 
-  #   arr=[2,2,2,5,2]
-#   res=arr.my_inject(1){|res,ele| res+ele}
-#   puts res
-# #   multiply_els([2,4,5])
-#   proc=Proc.new{
-#     |element|
-#     element.upcase
-#   }
-#   ["hi","hey"].my_map(proc)
+    #   arr=[2,2,2,5,2]
+    #   res=arr.my_inject(1){|res,ele| res+ele}
+    #   puts res
+    # #   multiply_els([2,4,5])
+    #   proc=Proc.new{
+    #     |element|
+    #     element.upcase
+    #   }
+    #   ["hi","hey"].my_map(proc)
