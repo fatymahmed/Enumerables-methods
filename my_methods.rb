@@ -27,11 +27,9 @@ module Enumerable #:nodoc:
   end
 
   def my_all
-    my_each do |item|
-        unless !yield(item)
-          return false
-      end
-    true
+    flag = true
+    my_each { |element| flag &&= yield(element) }
+    flag
   end
 
   def my_any
@@ -49,12 +47,13 @@ module Enumerable #:nodoc:
     result
   end
 
-  def my_count(arg = nil)
+  def my_count(my_arg = nil)
+    arr = self
     count = 0
-    if arg.nil?
-      my_each { |element| count += 1 if yield(element) }
+    if my_arg.nil?
+      arr.my_each { count += 1 }
     else
-      my_each { |element| count += 1 if element == arg }
+      arr.my_each { |x| count += 1 if x == my_arg }
     end
     count
   end
@@ -80,13 +79,14 @@ module Enumerable #:nodoc:
     result
   end
 end
-# def multiply_els(arr)
-#     arr.my_inject(1){|res,ele| res*ele}
-# end
+    # def multiply_els(arr)
+    #     arr.my_inject(1){|res,ele| res*ele}
+    # end
+    # puts %w[ant bear cat].all? { |word| word.length >= 3 }
 
-    # arr=[1,2,3,4]
-    # a1=arr.each{|element| element}
-    # puts a1
+    #  arr=[1,2,3,4]
+    #  a1=arr.each{|element| element}
+    #  puts a1
     # a2=arr.my_each{|element| element}
     # puts a2
     # arr.my_each_with_index{|element, index| puts "element #{element} at #{index} index"}
@@ -100,13 +100,14 @@ end
 
     # pc=["hi","hey"].my_map{|element| element.upcase}
     # puts pc
-
+    # puts [1, 2, 4, 2].my_count(2)
     #   arr=[2,2,2,5,2]
     #   res=arr.my_inject(1){|res,ele| res+ele}
     #   puts res
-    # #   multiply_els([2,4,5])
+    #    multiply_els([2,4,5])
     #   proc=Proc.new{
     #     |element|
     #     element.upcase
     #   }
     #   ["hi","hey"].my_map(proc)
+  
