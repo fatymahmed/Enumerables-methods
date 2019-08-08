@@ -34,7 +34,7 @@ module Enumerable #:nodoc:
 
   def my_any
     my_each do |item|
-        if yield(item)
+        unless yield(item)
           return true
         end
       end
@@ -92,7 +92,7 @@ end
     # arr.my_each_with_index{|element, index| puts "element #{element} at #{index} index"}
     # puts [2,1,2,4,8].my_all { |num|  num.even?  }
 
-    # puts [2,2,2,1,8].my_any { |num|  num.odd?  }
+    #  puts [2,2,2,1,8].any? { |num|  num.odd?  }
     # puts [2,2,2,2,2].my_none { |num|  num.odd?  }
 
     # puts [2,7,2,5,2].my_count{ |num|  num.odd?  }
@@ -107,6 +107,5 @@ end
     # multiply_els([2,4,5])
     # proc=Proc.new{
     # |element|
-    # element.upcase
-    # }
+    # element.upcase}
     # ["hi","hey"].my_map(proc)
