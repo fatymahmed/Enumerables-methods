@@ -104,4 +104,3 @@ end
 # |element|
 # element.upcase}
 # ["hi","hey"].my_map(proc)
-    
