@@ -54,16 +54,16 @@ module Enumerable #:nodoc:
     count
   end
 
-  def my_map(&block)
+  def my_map(proc = nil)
     result = []
-    if block.nil?
-      my_each do |item|
-        result << block.call(item)
-      end
-    else
-      return result
+    my_each do |element|
+      result <<
+        if proc
+          proc.call(element)
+        else
+          yield(element)
+        end
     end
-
     result
   end
 
@@ -88,14 +88,13 @@ end
     # arr.my_each_with_index{|element, index| puts "element #{element} at #{index} index"}
     # puts [2,1,2,4,8].my_all { |num|  num.even?  }
 
-    #  puts [2,2,2,1,8].any? { |num|  num.odd?  }
+    #  puts [2,2,2,1,8].my_any { |num|  num.odd?  }
     # puts [2,2,2,2,2].my_none { |num|  num.odd?  }
 
     # puts [2,7,2,5,2].my_count{ |num|  num.odd?  }
     # puts [2,2,2,5,2].my_count(2){}
 
-    # pc=["hi","hey"].my_map{|element| element.upcase}
-    # puts pc
+    #  puts ["hi","hey"].my_map{|element| element.upcase}
     # puts [1, 2, 4, 2].my_count(2)
     # arr=[2,2,2,5,2]
     # res=arr.my_inject(1){|res,ele| res+ele}
