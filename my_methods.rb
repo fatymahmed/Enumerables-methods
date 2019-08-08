@@ -23,30 +23,29 @@ module Enumerable #:nodoc:
   def my_select
     result = []
     my_each { |element| result << element if yield(element) }
-   result
+    result
   end
 
   def my_all
-    my_each { |item|
-      if !yield(item)
-        return false
+    my_each do |item|
+        unless !yield(item)
+          return false
       end
-    }
     true
   end
 
   def my_any
-    my_each { |item|
-      if yield(item)
-        return true
+    my_each do |item|
+        if yield(item)
+          return true
+        end
       end
-    }
     false
   end
 
   def my_none
     result = true
-    my_each{|item| result = false if yield(item)}
+    my_each {|item| result = false if yield(item) }
     result
   end
 
@@ -62,17 +61,16 @@ module Enumerable #:nodoc:
 
   def my_map(&block)
     result = []
-    unless block == nil
+    if block == nil
       my_each do |item| 
-        result << block.call(item) 
+        result << block.call(item)
       end
     else
       return result
     end
   
     result
-  end  
-
+  end
 
   def my_inject(initial)
     result = initial || 0
