@@ -43,7 +43,7 @@ module Enumerable #:nodoc:
 
   def my_none
     result = true
-    my_each {|item| result = false if yield(item) }
+    my_each { |item| result = false if yield(item) }
     result
   end
 
@@ -60,14 +60,14 @@ module Enumerable #:nodoc:
 
   def my_map(&block)
     result = []
-    if block == nil
-      my_each do |item| 
+    if block.nil?
+      my_each do |item|
         result << block.call(item)
       end
     else
       return result
     end
-  
+
     result
   end
 
@@ -101,13 +101,12 @@ end
     # pc=["hi","hey"].my_map{|element| element.upcase}
     # puts pc
     # puts [1, 2, 4, 2].my_count(2)
-    #   arr=[2,2,2,5,2]
-    #   res=arr.my_inject(1){|res,ele| res+ele}
-    #   puts res
-    #    multiply_els([2,4,5])
-    #   proc=Proc.new{
-    #     |element|
-    #     element.upcase
-    #   }
-    #   ["hi","hey"].my_map(proc)
-  
+    # arr=[2,2,2,5,2]
+    # res=arr.my_inject(1){|res,ele| res+ele}
+    # puts res
+    # multiply_els([2,4,5])
+    # proc=Proc.new{
+    # |element|
+    # element.upcase
+    # }
+    # ["hi","hey"].my_map(proc)
