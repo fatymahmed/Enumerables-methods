@@ -33,11 +33,7 @@ module Enumerable #:nodoc:
   end
 
   def my_any
-    my_each do |item|
-        unless yield(item)
-          return true
-        end
-      end
+    my_each { |item| return true if yield(item) }
     false
   end
 
