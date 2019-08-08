@@ -3,10 +3,10 @@
 module Enumerable #:nodoc:
   def my_each
     # your code here
-    result=[]
+    result = []
     i = 0
     while i < length
-      result<<yield(self[i])
+      result << yield(self[i])
       i += 1
     end
     result
@@ -23,31 +23,31 @@ module Enumerable #:nodoc:
   def my_select
     result = []
     my_each { |element| result << element if yield(element) }
-    return result
+   result
   end
 
   def my_all
-    self.my_each { |item|
+    my_each { |item|
       if !yield(item)
         return false
       end
     }
-    return true
+    true
   end
 
   def my_any
-    self.my_each { |item|
+    my_each { |item|
       if yield(item)
         return true
       end
     }
-    return false
+    false
   end
 
   def my_none
     result = true
-    self.my_each{|item| result = false if yield(item)}
-    return result
+    my_each{|item| result = false if yield(item)}
+    result
   end
 
   def my_count(arg = nil)
@@ -57,20 +57,20 @@ module Enumerable #:nodoc:
     else
       my_each { |element| count += 1 if element == arg }
     end
-    return count
+    count
   end
 
   def my_map(&block)
     result = []
     unless block == nil
-      self.my_each do |item| 
+      my_each do |item| 
         result << block.call(item) 
       end
     else
       return result
     end
   
-    return result
+    result
   end  
 
 
@@ -79,7 +79,7 @@ module Enumerable #:nodoc:
     my_each do |element|
       result = yield(result, element)
     end
-    return result
+    result
   end
 end
 # def multiply_els(arr)
