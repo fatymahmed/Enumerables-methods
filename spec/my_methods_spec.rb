@@ -10,17 +10,17 @@ RSpec.describe Enumerable do
   end
   describe '#my_all' do
     it 'returns true if condition holds for all elements ,otherwise returns false' do
-      expect([2, 1, 2, 4, 8].my_all { |num|  num.even? }).to eql(false)
+      expect([2, 1, 2, 4, 8].my_all(&:even?)) .to eql(false)
     end
   end
   describe '#my_any' do
     it "returns false if condition doesn't hold for all elements ,otherwise returns true" do
-      expect([2, 1, 2, 4, 8].my_any { |num|  num.even? }).to eql(true)
+      expect([2, 1, 2, 4, 8].my_any(&:even?)).to eql(true)
     end
   end
   describe '#my_none' do
     it 'returns false if condition hold for any elements ,otherwise returns true' do
-      expect([2, 1, 2, 4, 8].my_none { |num|  num.even? }).to eql(false)
+      expect([2, 1, 2, 4, 8].my_none(&:even?)).to eql(false)
     end
   end
   describe '#my_count' do
