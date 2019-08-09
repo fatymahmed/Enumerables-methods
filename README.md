@@ -1,8 +1,12 @@
 # Enumerables-methods
-Implementing my own version of Ruby’s enumerable methods.
+Implementing my own version of Ruby’s enumerable methods with rspec test.
+
+# Language
+- Ruby
 
 # Authors
 - Fatima Ahmed [http://github.com/fatymahmed]
+- Unegbu Kingsley [https://github.com/Urchmaney]
 
 
 # The Website
