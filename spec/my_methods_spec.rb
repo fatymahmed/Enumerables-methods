@@ -14,17 +14,26 @@ RSpec.describe Enumerable do
     end
   end
   describe '#my_all' do
-    it 'returns true if condition holds for all elements ,otherwise returns false' do
+    it 'returns true if condition holds for all elements' do
       expect(test_array.my_all(&:even?)) .to eql(true)
+    end
+    it 'returns false if condition does not holds for all elements' do
+      expect(test_array_1.my_all(&:even?)) .to eql(false)
     end
   end
   describe '#my_any' do
-    it "returns false if condition doesn't hold for all elements ,otherwise returns true" do
+    it 'returns true if condition hold for any elements' do
       expect(test_array.my_any(&:even?)).to eql(true)
+    end
+    it "returns false if condition doesn't hold for all elements" do
+      expect(test_array.my_any(&:odd?)).to eql(false)
     end
   end
   describe '#my_none' do
-    it 'returns false if condition hold for any elements ,otherwise returns true' do
+    it 'returns true if condition does not hold for any elements' do
+      expect(test_array.my_none(&:odd?)).to eql(true)
+    end
+    it 'returns false if condition hold for any elements' do
       expect(test_array_1.my_none(&:even?)).to eql(false)
     end
   end
@@ -43,6 +52,9 @@ RSpec.describe Enumerable do
     it 'returns a new array where element satisfies condition given in the block.' do
       expect(test_array_2.my_select(&:even?)).to eql([2, 2, 2, 2])
     end
+    it 'returns a new array where element satisfies condition given in the block.' do
+      expect(test_array_2.my_select { |element| element }).to eql([2, 2, 2, 5, 2])
+    end
   end
   describe '#my_each_with_index' do
     it 'loop through each of the elements in the array and giving it access to it index' do
@@ -52,6 +64,9 @@ RSpec.describe Enumerable do
   describe '#my_map' do
     it 'returns a new array performing operation in block on each element.' do
       expect(test_array_1.my_map { |element| element * 2 }).to eql([2, 4, 6, 8])
+    end
+    it 'returns a new array performing operation in block on each element.' do
+      expect(test_array_1.my_map { |element| element }).to eql([1, 2, 3, 4])
     end
   end
 end
