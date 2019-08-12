@@ -41,7 +41,7 @@ RSpec.describe Enumerable do
   end
   describe '#my_select' do
     it 'returns a new array where element satisfies condition given in the block.' do
-      expect(test_array_2.my_select { |ele| ele.even? }).to eql([2, 2, 2, 2])
+      expect(test_array_2.my_select(&:even?)).to eql([2, 2, 2, 2])
     end
   end
   describe '#my_each_with_index' do
